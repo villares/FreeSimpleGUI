@@ -470,6 +470,26 @@ class TreeData:
         parent_node = self.tree_dict[parent]
         parent_node._Add(node)
 
+    def delete(self, key):
+        if key is None:
+            return False
+        try:
+            node = self.tree_dict[key]
+            key_list = [
+                key,
+            ]
+            parent_node = self.tree_dict[node.parent]
+            parent_node.children.remove(node)
+            while key_list != []:
+                temp = []
+                for item in key_list:
+                    temp += self.tree_dict[item].children
+                    del self.tree_dict[item]
+                key_list = temp
+            return True
+        except KeyError:
+            return False
+
     def __repr__(self):
         """
         Converts the TreeData into a printable version, nicely formatted
