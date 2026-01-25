@@ -190,7 +190,7 @@ THEME_XPNATIVE = 'xpnative'
 DEFAULT_TTK_THEME = THEME_DEFAULT
 ttk_theme_in_use = None
 # TTK_THEME_LIST = ('default', 'winnative', 'clam', 'alt', 'classic', 'vista', 'xpnative')
-
+ADDITIONAL_TTK_STYLING_PATHS = None
 
 USE_TTK_BUTTONS = None
 
@@ -4430,6 +4430,12 @@ def _add_right_click_menu(element, toplevel_form):
 
 def _change_ttk_theme(style, theme_name):
     global ttk_theme_in_use
+
+    if ADDITIONAL_TTK_STYLING_PATHS:
+        if not hasattr(style.master, "_additional_styling_loaded"):
+            style.tk.call("source", str(ADDITIONAL_TTK_STYLING_PATHS))
+            style.master._additional_styling_loaded = True  # type: ignore
+
     if theme_name not in style.theme_names():
         _error_popup_with_traceback(
             f'You are trying to use TTK theme "{theme_name}"',
