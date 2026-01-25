@@ -4433,7 +4433,7 @@ def _change_ttk_theme(style, theme_name):
 
     if ADDITIONAL_TTK_STYLING_PATHS:
         if not hasattr(style.master, '_additional_styling_loaded'):
-            style.tk.call("source", str(ADDITIONAL_TTK_STYLING_PATHS))
+            style.tk.call('source', str(ADDITIONAL_TTK_STYLING_PATHS))
             style.master._additional_styling_loaded = True  # type: ignore
 
     if theme_name not in style.theme_names():
