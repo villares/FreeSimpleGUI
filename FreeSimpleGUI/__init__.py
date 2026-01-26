@@ -8571,10 +8571,15 @@ def set_options(
 
     if dpi_awareness is True:
         if running_windows():
-            if platform.release() == '7':
-                ctypes.windll.user32.SetProcessDPIAware()
-            elif platform.release() == '8' or platform.release() == '10':
-                ctypes.windll.shcore.SetProcessDpiAwareness(1)
+            try:
+                if platform.release() == '7':
+                    ctypes.windll.user32.SetProcessDPIAware()
+                # Windows 8, 10 and 11 use the following API
+                elif int(platform.release()) >= 8:
+                    ctypes.windll.shcore.SetProcessDpiAwareness(1)
+            except TypeError:
+                # If platform.release isn't a number, just ignore the API
+                pass
 
     if scaling is not None:
         DEFAULT_SCALING = scaling
