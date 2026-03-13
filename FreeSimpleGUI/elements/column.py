@@ -141,7 +141,10 @@ class TkScrollableFrame(tk.Frame):
 
     def set_scrollregion(self, event=None):
         """Set the scroll region on the canvas"""
-        self.canvas.configure(scrollregion=self.canvas.bbox('all'))
+        try:
+            self.canvas.configure(scrollregion=self.canvas.bbox('all'))
+        except tk.TclError:
+            pass
 
 
 class Column(Element):
