@@ -8576,7 +8576,7 @@ def set_options(
                 # whereas it would return 10 on Python 3.7
                 # If we happen to find "server" in our release, let's just assume we're running
                 # a recent windows server version
-                if "Server" in platform.release():
+                if 'Server' in platform.release():
                     ctypes.windll.shcore.SetProcessDpiAwareness(1)
                 elif platform.release() == '7':
                     ctypes.windll.user32.SetProcessDPIAware()
