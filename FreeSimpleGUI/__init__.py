@@ -9754,7 +9754,7 @@ def popup(
                 [
                     PopupButton(
                         custom_text,
-                        size=(len(custom_text), 1),
+                        size=(len(custom_text) + 1, 1),
                         button_color=button_color,
                         focus=True,
                         bind_return_key=True,
@@ -9766,7 +9766,7 @@ def popup(
                 [
                     PopupButton(
                         custom_text[0],
-                        size=(len(custom_text[0]), 1),
+                        size=(len(custom_text[0]) + 1, 1),
                         button_color=button_color,
                         focus=True,
                         bind_return_key=True,
@@ -9781,9 +9781,9 @@ def popup(
                         button_color=button_color,
                         focus=True,
                         bind_return_key=True,
-                        size=(len(custom_text[0]), 1),
+                        size=(len(custom_text[0]) + 1, 1),
                     ),
-                    PopupButton(custom_text[1], button_color=button_color, size=(len(custom_text[1]), 1)),
+                    PopupButton(custom_text[1], button_color=button_color, size=(len(custom_text[1]) + 1, 1)),
                 ]
             ]
     elif button_type == POPUP_BUTTONS_YES_NO:
