@@ -8624,10 +8624,21 @@ def set_options(
 
     if dpi_awareness is True:
         if running_windows():
-            if platform.release() == '7':
-                ctypes.windll.user32.SetProcessDPIAware()
-            elif platform.release() == '8' or platform.release() == '10':
-                ctypes.windll.shcore.SetProcessDpiAwareness(1)
+            try:
+                # Windows Server might return a string like "2022Server" on Python 3.13
+                # whereas it would return 10 on Python 3.7
+                # If we happen to find "server" in our release, let's just assume we're running
+                # a recent windows server version
+                if 'Server' in platform.release():
+                    ctypes.windll.shcore.SetProcessDpiAwareness(1)
+                elif platform.release() == '7':
+                    ctypes.windll.user32.SetProcessDPIAware()
+                # Windows 8, 10 and 11 use the following API
+                elif int(platform.release()) >= 8:
+                    ctypes.windll.shcore.SetProcessDpiAwareness(1)
+            except (ValueError, TypeError):
+                # If platform.release isn't a number or cant be computed here, just igonore it
+                pass
 
     if scaling is not None:
         DEFAULT_SCALING = scaling
