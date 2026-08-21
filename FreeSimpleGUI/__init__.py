@@ -15581,7 +15581,8 @@ def main_global_pysimplegui_settings():
                         pysimplegui_user_settings.set(json.dumps(('-ttk scroll-', key[1])), value)
 
             # Upgrade Service Settings
-            pysimplegui_user_settings.set('-upgrade show only critical-', values['-UPGRADE SHOW ONLY CRITICAL-'])
+            if '-UPGRADE SHOW ONLY CRITICAL-' in values:
+                pysimplegui_user_settings.set('-upgrade show only critical-', values['-UPGRADE SHOW ONLY CRITICAL-'])
 
             theme(new_theme)
 
