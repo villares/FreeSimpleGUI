@@ -295,7 +295,7 @@ Some features, like a System Tray Icon, are not available on all of the ports.  
 
 ## Integrations
 
-Among the more than 200 "Demo Programs", you'll find examples of how to integrate many popular Python packages into your GUI.
+Among the more than 300 "Demo Programs", you'll find examples of how to integrate many popular Python packages into your GUI.
 
 Want to embed a Matplotlib drawing into your window?  No problem, copy the demo code and instantly have a Matplotlib drawing of your dreams into your GUI.
 
